@@ -1,0 +1,70 @@
+Calculator
+----------
+1. create a smart component(all smart component will be contain in container folder) then set this.state in constructor a initialized object which have two keys one of my key is result and another one is value eg--
+
+this.state = {result:"", value: ""};
+
+result value will be show in input box 
+or 
+value will be show in calculation box;
+
+2.create four dump component( all dumb component will be contain in component folder) for inputbox, calculationbox, numberbutton, operatior and import all in smart component eg -
+
+
+import {inputbox} from '../../components';
+
+import some more componets like View,StyleSheet,Text from 'react-native';
+
+import {View,StyleSheet,Text,TextInput,ThouchableOpacity} from 'react-native';
+
+3.create one more object 'operation.js' and store all the independent operations(all operation will be store in model folder).
+
+we will create a function like doCompute(inputvalue) it will take a inputvalue argument 
+and return (eval(inputValue)).toString(); .it will evaluate the string and also return String.
+
+4.now create a function and give name whatever your want . i am giving name hadleChangesText(event).this function setting the current input text value in state by using this.setSate({...this.state,result: event.target.value }); also append previous state value with this.
+
+
+5.now create a one more funciton onPressed(buttonValue) this will take a button value as a argument and cheack if button value is equal to '=' sign then call doCompute Fuction and put the buttonValue argument in it and set value in state by using setState (result:___) else setSate({result: this.sate.result+buttonValue}); it will store input value concate operator sign.
+
+6.create one more function OnNumPressed(buttonValue) which will take buttonValue and do the switch case operation on the behalf of operator sign '+','*' etc. and concate the button value with input string and set into result.
+
+7.then create View tag as like div and create all dumb component as tag and wrap with view
+
+8.you can apply css by using 
+
+
+const styles = StyleSheet.create({
+text : {
+   font-size: 20,
+   background-color: 'black'  	
+}
+})
+
+and applay as --->
+<View style={styles.text}></View>
+
+
+9.and send this all function by using props to dumb component and call them.
+
+
+10. You can create a button in react native  by using TextOpacity or text like-->
+
+<TextOpacity>
+	<Text></Text>
+</TextOpacity> 
+
+
+
+TextOpacit --> gives you a touchable functionality.
+Note-->//Delete all spaces between the <Text> Tag otherwise it will give you error massage like "Invariant Violation: Text strings must be rendered within a <Text> component".
+
+
+Hint--> You can create a dynamic buttons by using loop.
+
+
+Hint--> // you can use this login to delete string one by one
+
+let text = this.state.result.split('');  //"control" it split as 					         //['c','o','n','t','r','o','l'] and 						//gives array
+text.pop();              //'l' its delete the last element of array
+setState({result:text.join('')})  // it will join '' and make it again 					string and set to the state.
